@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-const sendMail = require("./utils/mail"); // 👈 TEMP MAIL TEST
+// const sendMail = require("./utils/mail"); // 👈 TEMP MAIL TEST
 
 const app = express();
 

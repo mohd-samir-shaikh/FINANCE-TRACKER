@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const sendMail = require("../utils/mail");
+// const sendMail = require("../utils/mail");
 const generateOTP = require("../utils/otp");
 
 /* ===================== SIGNUP ===================== */
@@ -96,11 +96,11 @@ exports.forgot = async (req, res) => {
     user.resetOtpExpiry = Date.now() + 5 * 60 * 1000; // 5 minutes
     await user.save();
 
-    await sendMail(
-  email,
-  "Password Reset OTP",
-  `Your OTP is ${otp}. It will expire in 5 minutes.`
-);
+//     await sendMail(
+//   email,
+//   "Password Reset OTP",
+//   `Your OTP is ${otp}. It will expire in 5 minutes.`
+// );
 
     return res.json({ message: "OTP sent to email" });
   } catch (err) {
