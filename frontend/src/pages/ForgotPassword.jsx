@@ -9,7 +9,7 @@ export default function ForgotPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // ================= STEP 1: SEND OTP =================
+  //send otp
   const sendOtp = async () => {
     try {
       await axios.post("/auth/forgot-password", { email });
@@ -20,7 +20,7 @@ export default function ForgotPassword() {
     }
   };
 
-  // ================= STEP 2: VERIFY OTP & RESET =================
+  //verify otp and reset
   const resetPassword = async () => {
     if (!otp || !password || !confirmPassword) {
       alert("All fields required");
@@ -35,7 +35,7 @@ export default function ForgotPassword() {
     try {
       await axios.post("/auth/reset-password", {
         email,
-        otp: String(otp), // 🔥 VERY IMPORTANT
+        otp: String(otp),
         password,
       });
 

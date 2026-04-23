@@ -9,7 +9,7 @@ export default function ResetPassword() {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // ================= SEND OTP =================
+  //send otp
   const sendOtp = async () => {
     if (!email) {
       setMessage("Please enter email");
@@ -34,7 +34,7 @@ export default function ResetPassword() {
     }
   };
 
-  // ================= RESET PASSWORD =================
+  //reset password
   const resetPassword = async () => {
     if (!email || otp.trim() === "" || newPassword.trim() === "") {
       setMessage("All fields are required");
