@@ -33,9 +33,13 @@ exports.signupRequest = async (req, res) => {
       },
     });
   } catch (err) {
-    console.error("SIGNUP ERROR:", err);
-    return res.status(500).json({ message: "Signup failed" });
-  }
+  console.error("SIGNUP ERROR 👉", err);
+
+  return res.status(500).json({
+    message: err.message,
+    error: err,
+  });
+}
 };
 
 /* ===================== SIGNIN ===================== */
