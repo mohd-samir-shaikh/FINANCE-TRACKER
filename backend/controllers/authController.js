@@ -3,9 +3,9 @@ const User = require("../models/User");
 // const sendMail = require("../utils/mail");
 const generateOTP = require("../utils/otp");
 
-/* ===================== SIGNUP ===================== */
+
 exports.signupRequest = async (req, res) => {
-  console.log("SIGNUP BODY", req.body);
+  console.log("SIGNUP BODY", req.body);                       //sign up
   try {
     const { username, email, password } = req.body;
 
@@ -42,11 +42,11 @@ exports.signupRequest = async (req, res) => {
 }
 };
 
-/* ===================== SIGNIN ===================== */
+
 exports.signin = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+                                                                        // sign in
     if (!email || !password) {
       return res.status(400).json({ message: "All fields required" });
     }
@@ -81,10 +81,10 @@ exports.signin = async (req, res) => {
   }
 };
 
-/* ===================== FORGOT PASSWORD (SEND OTP) ===================== */
+
 exports.forgot = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email } = req.body;                                 // forgot password
 
     const user = await User.findOne({ email });
     if (!user) {
@@ -113,9 +113,9 @@ exports.forgot = async (req, res) => {
   }
 };
 
-/* ===================== RESET PASSWORD (VERIFY OTP) ===================== */
+
 exports.reset = async (req, res) => {
-  try {
+  try {                                                             // reset password
     const { email, otp, password } = req.body;
 
     if (!email || !otp || !password) {
@@ -127,17 +127,17 @@ exports.reset = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // // ✅ DEBUG LOGS (NOW SAFE)
+    // //  DEBUG LOGS (NOW SAFE)
     // console.log("DB OTP:", user.resetOTP);
     // console.log("USER OTP:", otp);
     // console.log("EXPIRY:", user.resetOTPExpiry);
     // console.log("NOW:", Date.now());
 
-    // ✅ OTP CHECK
+    
     if (
       !user.resetOtp ||
       String(user.resetOtp).trim() !== String(otp).trim() ||
-      !user.resetOtpExpiry ||
+      !user.resetOtpExpiry ||                                                 // otp check
       user.resetOtpExpiry < Date.now()
     ) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
@@ -155,10 +155,10 @@ exports.reset = async (req, res) => {
   }
 };
 
-/* ===================== CHANGE PASSWORD (LOGGED IN) ===================== */
+
 exports.changePassword = async (req, res) => {
   try {
-    const { userId, newPassword } = req.body;
+    const { userId, newPassword } = req.body;                     // change password in login info
 
     if (!newPassword) {
       return res.status(400).json({ message: "Password required" });

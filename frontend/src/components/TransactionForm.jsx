@@ -8,7 +8,7 @@ export default function TransactionForm({ onAdded }) {
   const [date, setDate] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // ✅ VERY IMPORTANT
+    e.preventDefault();
 
     try {
       await api.post("/transactions", {

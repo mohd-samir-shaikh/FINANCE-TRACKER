@@ -17,7 +17,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 
-/* 🔒 Protected Route */
+/*Protected Route */
 function PrivateRoute({ children }) {
   const { user } = useAuth();
   return user ? children : <Navigate to="/signin" replace />;
@@ -33,20 +33,20 @@ function AppRoutes() {
       {user && <Navbar />}
 
       <Routes>
-        {/* 🌐 Public Routes */}
+        {/* Public Routes */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset" element={<PrivateRoute><ResetPassword/></PrivateRoute>}/>
 
-        {/* 🔁 ROOT REDIRECT (THIS FIXES LOCALHOST) */}
+        {/* ROOT REDIRECT (THIS FIXES LOCALHOST) */}
         <Route
           path="/"
           element={<Navigate to={user ? "/home" : "/signup"} replace />}
         />
 
-        {/* 🔐 Protected Routes */}
+        {/* Protected Routes */}
         <Route
           path="/home"
           element={
@@ -65,7 +65,7 @@ function AppRoutes() {
           }
         />
 
-        {/* ❌ Fallback */}
+        {/* Fallback */}
         <Route
           path="*"
           element={<Navigate to={user ? "/home" : "/signup"} replace />}
@@ -75,7 +75,7 @@ function AppRoutes() {
   );
 }
 
-/* 🚀 App Entry */
+/* App Entry */
 export default function App() {
   return (
     <AuthProvider>

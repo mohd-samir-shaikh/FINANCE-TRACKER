@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
-    // 🔐 OTP FOR FORGOT PASSWORD
+    
     resetOtp: {
-      type: String,
+      type: String,                   // for forgot password otp
       default: null,
     },
 
@@ -36,8 +36,8 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// 🔒 HASH PASSWORD BEFORE SAVE
-userSchema.pre("save", async function (next) {
+
+userSchema.pre("save", async function (next) {                  // hash password before saving
   if (!this.isModified("password")) return next();
 
   const salt = await bcrypt.genSalt(10);
@@ -45,9 +45,9 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// 🔑 COMPARE PASSWORD
+
 userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  return await bcrypt.compare(enteredPassword, this.password);                // compare password in login with hashed password in db
 };
 
 module.exports = mongoose.model("User", userSchema);

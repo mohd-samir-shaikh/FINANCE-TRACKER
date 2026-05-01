@@ -28,13 +28,13 @@ export const AuthProvider = ({ children }) => {
       });
   }, []);
 
-  // 🔹 Login
+  // Login
   const login = (token, userData) => {
     localStorage.setItem("token", token);
     setUser(userData);
   };
 
-  // 🔹 Logout
+  // Logout
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);

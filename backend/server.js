@@ -7,16 +7,16 @@ require("dotenv").config();
 
 const app = express();
 
-// MIDDLEWARE
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-// ROUTES
+
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/transactions", require("./routes/transactionRoutes"));
 
-// DB CONNECTION
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(async () => {

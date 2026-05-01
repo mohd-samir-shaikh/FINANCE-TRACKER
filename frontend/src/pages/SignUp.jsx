@@ -88,7 +88,7 @@ export default function Signup() {
             </button>
           </form>
 
-          {/* ✅ SIGN IN LINK */}
+          {/*SIGN IN LINK */}
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link
